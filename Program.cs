@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
-        policy.WithOrigins("http://localhost:5173", "https://product-hub-front.vercel.app/").AllowAnyHeader().AllowAnyMethod());
+        policy.WithOrigins("http://localhost:5173", "https://product-hub-front.vercel.app").AllowAnyHeader().AllowAnyMethod());
 });
 
 var app = builder.Build();
