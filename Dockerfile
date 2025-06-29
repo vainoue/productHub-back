@@ -8,7 +8,7 @@ RUN dotnet restore
 
 # Copia todo o restante do código e faz o publish
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish ProductAPI.csproj -c Release -o out
 
 # Imagem para rodar a aplicação
 FROM mcr.microsoft.com/dotnet/aspnet:9.0

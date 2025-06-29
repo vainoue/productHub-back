@@ -1,0 +1,27 @@
+# Ignore arquivos e pastas desnecessárias para o build do container
+
+node_modules
+bin
+obj
+.vscode
+.git
+.gitignore
+docker-compose.yml
+*.md
+*.log
+*.env
+*.user
+*.suo
+*.cache
+*.db
+*.DS_Store
+
+# Ignorar pastas do frontend se você não precisa copiar elas no container backend
+client/node_modules
+client/build
+client/dist
+
+# Ignorar arquivos locais de IDEs
+*.sln
+*.csproj.user
+.vs
