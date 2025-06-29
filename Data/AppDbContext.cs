@@ -21,12 +21,12 @@ public class AppDbContext : DbContext
     {
         modelBuilder.Entity<Product>()
             .HasOne(p => p.User)
-            .WithMany()
+            .WithMany(u => u.Products)
             .HasForeignKey(p => p.UserId);
 
         modelBuilder.Entity<Favorite>()
             .HasOne(f => f.User)
-            .WithMany()
+            .WithMany(u => u.Favorites)
             .HasForeignKey(f => f.UserId);
 
         modelBuilder.Entity<Favorite>()

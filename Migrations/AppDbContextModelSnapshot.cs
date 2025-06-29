@@ -17,7 +17,7 @@ namespace ProductAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -62,10 +62,12 @@ namespace ProductAPI.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("numeric(10,2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -114,7 +116,7 @@ namespace ProductAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("ProductAPI.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Favorites")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -127,12 +129,19 @@ namespace ProductAPI.Migrations
             modelBuilder.Entity("ProductAPI.Models.Product", b =>
                 {
                     b.HasOne("ProductAPI.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ProductAPI.Models.User", b =>
+                {
+                    b.Navigation("Favorites");
+
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

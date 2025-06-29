@@ -8,4 +8,6 @@ public class User
     public string? Email { get; set; }
     public DateTime? Birthdate { get; set; }
     public byte[]? Photo { get; set; }
+    public List<Product> Products { get; set; } = new();
+    public List<Favorite> Favorites { get; set; } = new();
 }

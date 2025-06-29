@@ -1,10 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using ProductAPI.Data;
 
+DotNetEnv.Env.Load();
+
 var builder = WebApplication.CreateBuilder(args);
 
-//colocar a conexão com o render
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//colocar a conexão com o Supabase
+var connectionString = $"Host={Environment.GetEnvironmentVariable("DB_HOST")};" +
+                       $"Port={Environment.GetEnvironmentVariable("DB_PORT")};" +
+                       $"Database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+                       $"Username={Environment.GetEnvironmentVariable("DB_USER")};" +
+                       $"Password={Environment.GetEnvironmentVariable("DB_PASSWORD")};" +
+                       $"SSL Mode={Environment.GetEnvironmentVariable("DB_SSLMODE")};" +
+                       $"Trust Server Certificate={Environment.GetEnvironmentVariable("DB_TRUST_CERT")}";
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddControllers();
