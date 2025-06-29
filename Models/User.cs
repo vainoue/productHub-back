@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace ProductAPI.Models;
 
 public class User
@@ -8,6 +10,8 @@ public class User
     public string? Email { get; set; }
     public DateTime? Birthdate { get; set; }
     public byte[]? Photo { get; set; }
+    [JsonIgnore]
     public List<Product> Products { get; set; } = new();
+    [JsonIgnore]
     public List<Favorite> Favorites { get; set; } = new();
 }
