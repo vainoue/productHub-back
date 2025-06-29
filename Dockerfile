@@ -20,8 +20,8 @@ COPY --from=build /app/out .
 # Define a porta que o container vai expor
 EXPOSE 80
 
-# Variável para que o app escute em http na porta 80
-ENV ASPNETCORE_URLS=http://+:80
+# Variável para que o app escute em http na porta 5000
+ENV ASPNETCORE_URLS=http://+:5000
 
 # Comando para rodar a aplicação
 ENTRYPOINT ["dotnet", "ProductAPI.dll"]
